@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: header(${'Create a Post'})">
+    <!--Partial Header from partials/header.html-->
+</head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<div class="container">
+
+    <h1>Create a Post</h1>
+
+    <form action="/posts/create" method="post" th:object="${post}">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input  class="form-control" th:field="*{title}" type="text" id="title" placeholder="Title for post"/>
+        </div>
+        <div class="form-group">
+            <label for="postContent">Post Content</label>
+            <textarea th:field="*{body}" class="form-control" id="postContent" rows="3" placeholder="Post Content" ></textarea>
+        </div>
+        <button type="submit" class="btn btn-default">Submit Post</button>
+    </form>
+
+</div>
+
+
+<!-- jQuery & jsBootstrap CDN from partials/footer.html-->
+<script th:replace="partials/footer :: jQuery"></script>
+<script th:replace="partials/footer :: jsBootstrap"></script>
+</body>
+</html>

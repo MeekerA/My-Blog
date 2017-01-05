@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: header(${'Show Blog'})">
+    <!--Partial Header from partials/header.html-->
+</head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<div class="container">
+
+    <h1>Here are all the posts</h1>
+
+    <div>
+        <table class="table">
+            <tr class="active">
+                <th>Post ID</th>
+                <th>Title</th>
+                <th>Content</th>
+            </tr>
+            <tr th:each="post : ${posts}" th:object="${post}">
+                <td th:text="*{id}"></td>
+                <td th:text="*{title}"></td>
+                <td th:text="*{body}"></td>
+            </tr>
+
+        </table>
+    </div>
+
+
+</div>
+
+
+<!-- jQuery & jsBootstrap CDN from partials/footer.html-->
+<script th:replace="partials/footer :: jQuery"></script>
+<script th:replace="partials/footer :: jsBootstrap"></script>
+</body>
+</html>

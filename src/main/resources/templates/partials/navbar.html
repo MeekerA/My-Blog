@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<nav th:fragment="navbar" class="navbar navbar-inverse" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/posts">Blog</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/posts/create">Create Post</a></li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>
+
+</body>
+</html>
