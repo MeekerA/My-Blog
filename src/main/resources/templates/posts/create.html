@@ -13,11 +13,11 @@
     <form action="/posts/create" method="post" th:object="${post}">
         <div class="form-group">
             <label for="title">Title</label>
-            <input  class="form-control" th:field="*{title}" type="text" id="title" placeholder="Title for post"/>
+            <input  class="form-control" th:field="*{title}" type="text" id="title" placeholder="Title for post" autofocus="true" required="required"/>
         </div>
         <div class="form-group">
             <label for="postContent">Post Content</label>
-            <textarea th:field="*{body}" class="form-control" id="postContent" rows="3" placeholder="Post Content" ></textarea>
+            <textarea th:field="*{body}" class="form-control" id="postContent" rows="3" placeholder="Post Content" required="required"></textarea>
         </div>
         <button type="submit" class="btn btn-default">Submit Post</button>
     </form>
@@ -29,4 +29,5 @@
 <script th:replace="partials/footer :: jQuery"></script>
 <script th:replace="partials/footer :: jsBootstrap"></script>
 </body>
+
 </html>
