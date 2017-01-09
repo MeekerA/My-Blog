@@ -26,4 +26,9 @@ public class ListPosts implements Posts {
         posts.add(post);
     }
 
+    @Override
+    public void singlePost(int postId) {
+
+    }
+
 }

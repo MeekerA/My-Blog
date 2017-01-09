@@ -9,5 +9,9 @@ import java.util.List;
 public interface Posts {
 //     get a list of all the posts
     List<Post> all();
+
     void insert(Post post);
+
+    Post singlePost(int postId);
+
 }

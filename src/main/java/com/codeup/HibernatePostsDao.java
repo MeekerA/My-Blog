@@ -3,6 +3,7 @@ package com.codeup;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -27,5 +28,13 @@ public class HibernatePostsDao implements Posts  {
         session.save(post);
         tx.commit();
     }
+
+    @Override
+    public Post singlePost(int postId) {
+        Query query = session.createQuery("from Post where id = :id ");
+        query.setParameter("id", postId);
+        return (Post) query.getSingleResult();
+    }
+
 
 }
