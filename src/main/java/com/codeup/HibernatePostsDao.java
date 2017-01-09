@@ -36,5 +36,21 @@ public class HibernatePostsDao implements Posts  {
         return (Post) query.getSingleResult();
     }
 
+    @Override
+    public void updatePost(Post editedPost) {
+        Post existingPost = singlePost(editedPost.getId());
+        existingPost.setTitle(editedPost.getTitle());
+        existingPost.setBody(editedPost.getBody());
+        Transaction tx = session.beginTransaction();
+        session.update(existingPost);
+        tx.commit();
+    }
 
+    @Override
+    public void deletePost(int postId) {
+        Post postToDelete = singlePost(postId);
+        Transaction tx = session.beginTransaction();
+        session.delete(postToDelete);
+        tx.commit();
+    }
 }

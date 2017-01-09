@@ -42,4 +42,22 @@ public class PostsController {
         return "posts/show";
     }
 
+    @GetMapping("/{id}/edit")
+    public String editPost(Model model, @PathVariable int id){
+        model.addAttribute("post", DaoFactory.getPostDao().singlePost(id));
+        return "posts/edit";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String updatePost(@ModelAttribute Post updatedPost){
+        DaoFactory.getPostDao().updatePost(updatedPost);
+        return "redirect:/posts";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String deletePost(@ModelAttribute Post postToDelete){
+        DaoFactory.getPostDao().deletePost(postToDelete.getId());
+        return "redirect:/posts";
+    }
+
 }

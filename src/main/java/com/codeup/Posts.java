@@ -14,4 +14,7 @@ public interface Posts {
 
     Post singlePost(int postId);
 
+    void updatePost(Post post);
+
+    void deletePost(int postId);
 }

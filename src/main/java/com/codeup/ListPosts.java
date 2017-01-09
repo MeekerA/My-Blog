@@ -31,5 +31,15 @@ public class ListPosts implements Posts {
         return null;
     }
 
+    @Override
+    public void updatePost(Post post) {
+
+    }
+
+    @Override
+    public void deletePost(int postId) {
+
+    }
+
 
 }
