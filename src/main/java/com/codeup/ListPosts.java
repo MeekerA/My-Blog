@@ -27,8 +27,9 @@ public class ListPosts implements Posts {
     }
 
     @Override
-    public void singlePost(int postId) {
-
+    public Post singlePost(int postId) {
+        return null;
     }
+
 
 }

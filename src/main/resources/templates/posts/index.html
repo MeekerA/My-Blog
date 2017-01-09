@@ -19,7 +19,7 @@
             </tr>
             <tr th:each="post : ${posts}" th:object="${post}">
                 <td th:text="*{id}"></td>
-                <td th:text="*{title}"></td>
+                <td><a th:href="@{'/posts/' + *{id}}" th:text="*{title}"></a></td>
                 <td th:text="*{body}"></td>
             </tr>
         </table>

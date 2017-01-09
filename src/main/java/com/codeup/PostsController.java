@@ -36,4 +36,10 @@ public class PostsController {
         return "redirect:/posts";
     }
 
+    @GetMapping("/{id}")
+    public String showSinglePost(Model model, @PathVariable int id ){
+        model.addAttribute("post", DaoFactory.getPostDao().singlePost(id));
+        return "posts/show";
+    }
+
 }
