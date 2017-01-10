@@ -57,7 +57,13 @@ public class PostsController {
     }
 
     @PostMapping("/{id}/edit")
-    public String updatePost(@ModelAttribute Post updatedPost){
+    public String updatePost(@Valid Post updatedPost, Errors validation, Model model){
+
+        if (validation.hasErrors()){
+            model.addAttribute("errors", validation);
+            model.addAttribute("post", updatedPost);
+            return "posts/edit";
+        }
         DaoFactory.getPostDao().updatePost(updatedPost);
         return "redirect:/posts";
     }
