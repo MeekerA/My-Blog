@@ -1,6 +1,9 @@
 package com.codeup;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 /**
  * Created by Austin on 1/5/17.
@@ -15,9 +18,13 @@ public class Post {
     private int id;
 
     @Column(nullable = false)
+    @NotBlank(message = "Post must have a title")
+    @Size(min = 5, message = "A title must be at least 5 characters.")
     private String title;
 
     @Column(nullable = false, length = 1000)
+    @NotBlank(message = "Post must have a description")
+    @Size(min = 5, message = "A body must be at least 5 characters.")
     private String body;
 
     public int getId() {
@@ -33,7 +40,7 @@ public class Post {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title.trim();
     }
 
     public String getBody() {

@@ -3,7 +3,6 @@ package com.codeup;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-
 /**
  * Created by Austin on 1/5/17.
  */
