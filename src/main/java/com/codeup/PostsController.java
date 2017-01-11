@@ -18,9 +18,11 @@ import java.util.List;
 public class PostsController {
 
     @GetMapping
-        public String showPosts(Model model){
-        List posts = new ArrayList(DaoFactory.getPostDao().all());
+        public String showAllPosts(Model model){
+        List<Post> posts = new ArrayList(DaoFactory.getPostDao().all());
+
         Collections.reverse(posts);
+
         model.addAttribute("posts", posts);
         return "posts/index";
     }

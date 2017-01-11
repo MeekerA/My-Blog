@@ -7,14 +7,14 @@
     <!--Partial Navbar form partials/navbar.html-->
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<div class="container col-md-6 col-md-offset-3">
+<div class="container col-md-8 col-md-offset-2">
 
     <div>
         <h1 th:text="${post.title}"></h1>
     </div>
     <hr/>
     <div>
-        <p th:text="${post.body}"></p>
+        <textarea th:text="${post.body}" class="form-control" rows="20" style="resize: none; background-color: inherit; border: none" readonly="readonly"></textarea>
     </div>
 
 

@@ -21,7 +21,7 @@
             <tr th:each="post : ${posts}" th:object="${post}">
                 <td th:text="*{id}"></td>
                 <td><a th:href="@{'/posts/' + *{id}}" th:text="*{title}"></a></td>
-                <td th:text="*{body}"></td>
+                <td th:text="*{#strings.abbreviate(body,200)}"></td>
                 <td><a th:href="@{'/posts/' + *{id} + '/edit'}">Edit</a></td>
             </tr>
         </table>

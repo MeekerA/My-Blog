@@ -8,6 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 /**
  * Created by Austin on 1/8/17.
  */
+
 public class HibernateUtil {
 
     public static SessionFactory getSessionFactory() {

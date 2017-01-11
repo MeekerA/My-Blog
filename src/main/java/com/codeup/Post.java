@@ -27,6 +27,7 @@ public class Post {
     @Size(min = 5, message = "A body must be at least 5 characters.")
     private String body;
 
+
     public int getId() {
         return id;
     }
