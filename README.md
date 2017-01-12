@@ -1,4 +1,4 @@
-# Practice Blog Post for CodeUp Class
+#  Blog for CodeUp 
 
 Building blog post application that uses Spring MVC and Hibernate.
 
