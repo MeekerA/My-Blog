@@ -1,9 +1,12 @@
 package com.codeup;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 /**
  * Created by Austin on 1/5/17.
@@ -27,6 +30,16 @@ public class Post {
     @Size(min = 5, message = "A body must be at least 5 characters.")
     private String body;
 
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "modify_date")
+    private Date modifyDate;
 
     public int getId() {
         return id;
@@ -52,4 +65,19 @@ public class Post {
         this.body = body;
     }
 
+//    public Date getCreateDate() {
+//        return createDate;
+//    }
+//
+//    public void setCreateDate(Date createDate) {
+//        this.createDate = createDate;
+//    }
+//
+//    public Date getModifyDate() {
+//        return modifyDate;
+//    }
+//
+//    public void setModifyDate(Date modifyDate) {
+//        this.modifyDate = modifyDate;
+//    }
 }

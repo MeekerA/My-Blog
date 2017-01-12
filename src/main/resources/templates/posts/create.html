@@ -4,6 +4,7 @@
     <!--Partial Header from partials/header.html-->
 </head>
 <body>
+<!--Partial Navbar form partials/navbar.html-->
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div class="container col-md-6 col-md-offset-3">
@@ -16,7 +17,7 @@
         <div class="form-group">
             <label for="title">Title</label>
             <input  class="form-control" th:field="*{title}" type="text" id="title" placeholder="Title for post"
-                    autofocus="true" required="required" />
+                    autofocus="autofocus" required="required" />
             <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="alert alert-danger"></p>
 
         </div>
