@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     @Autowired
-    public Users usersDao;
+    private Users usersDao;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -32,11 +32,9 @@ public class UserController {
 
     @PostMapping("/create")
     public String registerNewUser(@ModelAttribute User newUser){
-
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
-
         usersDao.save(newUser);
-        return "redirect:/user/login";
+        return "redirect:/login";
     }
 
 

@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/posts")
-public class PostsController {
+public class PostsController extends BaseController {
 
     @GetMapping
         public String showAllPosts(Model model){

@@ -13,7 +13,7 @@
 
     <hr/>
 
-    <form action="/users/create" method="post" th:object="${user}" >
+    <form th:action="@{/user/create}" method="post" th:object="${user}" >
 
         <div class="form-group">
             <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></p>
@@ -37,8 +37,8 @@
         </div>
 
         <button type="submit" class="btn btn-success">Sign me up</button>
-    </form>
 
+    </form>
 
 </div>
 

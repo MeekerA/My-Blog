@@ -13,7 +13,7 @@
 
     <hr/>
 
-    <form action="/posts/create" method="post" th:object="${post}" >
+    <form th:action="@{/posts/create}" method="post" th:object="${post}" >
         <div class="form-group">
             <label for="title">Title</label>
             <input  class="form-control" th:field="*{title}" type="text" id="title" placeholder="Title for post"
