@@ -17,13 +17,17 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/posts")
 public class PostsController extends BaseController {
 
     @Autowired
     private Posts postDao;
 
     @GetMapping
+    public String Homepage(){
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/posts")
         public String showAllPosts(Model model){
         List<Post> posts = new ArrayList((Collection) postDao.findAll());
 
@@ -33,13 +37,13 @@ public class PostsController extends BaseController {
         return "posts/index";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/posts/create")
     public String showCreatePost(Model model){
             model.addAttribute("post", new Post());
             return "posts/create";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/posts/create")
     public String submitPost(@Valid Post posting, Errors validation, Model model){
 
         if (validation.hasErrors()){
@@ -52,19 +56,19 @@ public class PostsController extends BaseController {
         return "redirect:/posts";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/posts/{id}")
     public String showSinglePost(Model model, @PathVariable long id ){
         model.addAttribute("post", postDao.findOne(id));
         return "posts/show";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/posts/{id}/edit")
     public String editPost(Model model, @PathVariable long id){
         model.addAttribute("post", postDao.findOne(id));
         return "posts/edit";
     }
 
-    @PostMapping("/{id}/edit")
+    @PostMapping("/posts/{id}/edit")
     public String updatePost(@Valid Post updatedPost, Errors validation, Model model){
 
         if (validation.hasErrors()){
@@ -76,7 +80,7 @@ public class PostsController extends BaseController {
         return "redirect:/posts";
     }
 
-    @PostMapping("/{id}/delete")
+    @PostMapping("/posts/{id}/delete")
     public String deletePost(@ModelAttribute Post postToDelete){
         postDao.delete(postToDelete);
         return "redirect:/posts";
