@@ -30,7 +30,6 @@ public class Post {
     @Size(min = 5, message = "A body must be at least 5 characters.")
     private String body;
 
-
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_date")
@@ -40,6 +39,9 @@ public class Post {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "modify_date")
     private Date modifyDate;
+
+    @ManyToOne
+    private User user;
 
     public long getId() {
         return id;
@@ -79,5 +81,13 @@ public class Post {
 
     public void setModifyDate(Date modifyDate) {
         this.modifyDate = modifyDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

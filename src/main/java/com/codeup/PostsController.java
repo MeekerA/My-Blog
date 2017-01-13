@@ -32,7 +32,7 @@ public class PostsController extends BaseController {
         List<Post> posts = new ArrayList((Collection) postDao.findAll());
 
         Collections.reverse(posts);
-
+        model.addAttribute("currentUser", loggedInUser());
         model.addAttribute("posts", posts);
         return "posts/index";
     }
@@ -51,7 +51,7 @@ public class PostsController extends BaseController {
             model.addAttribute("post", posting);
             return "posts/create";
         }
-
+        posting.setUser(loggedInUser());
         postDao.save(posting);
         return "redirect:/posts";
     }
@@ -64,24 +64,45 @@ public class PostsController extends BaseController {
 
     @GetMapping("/posts/{id}/edit")
     public String editPost(Model model, @PathVariable long id){
+
+        Post existingPost = postDao.findOne(id);
+
+        if (existingPost.getUser().getId() != loggedInUser().getId()) {
+            return "redirect:/posts";
+        }
+
         model.addAttribute("post", postDao.findOne(id));
         return "posts/edit";
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String updatePost(@Valid Post updatedPost, Errors validation, Model model){
+    public String updatePost(@Valid Post updatedPost, Errors validation, Model model, @PathVariable long id){
+
+        Post existingPost = postDao.findOne(id);
+
+        if (existingPost.getUser().getId() != loggedInUser().getId()) {
+            return "redirect:/posts";
+        }
 
         if (validation.hasErrors()){
             model.addAttribute("errors", validation);
             model.addAttribute("post", updatedPost);
             return "posts/edit";
         }
+        updatedPost.setUser(loggedInUser());
         postDao.save(updatedPost);
         return "redirect:/posts";
     }
 
     @PostMapping("/posts/{id}/delete")
-    public String deletePost(@ModelAttribute Post postToDelete){
+    public String deletePost(@ModelAttribute Post postToDelete, @PathVariable long id){
+
+        Post existingPost = postDao.findOne(id);
+
+        if (existingPost.getUser().getId() != loggedInUser().getId()) {
+            return "redirect:/posts";
+        }
+
         postDao.delete(postToDelete);
         return "redirect:/posts";
     }
