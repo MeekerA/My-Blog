@@ -1,5 +1,6 @@
 package com.codeup;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -7,19 +8,24 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by Austin on 1/5/17.
  */
+
 @Controller
 @RequestMapping("/posts")
 public class PostsController extends BaseController {
 
+    @Autowired
+    private Posts postDao;
+
     @GetMapping
         public String showAllPosts(Model model){
-        List<Post> posts = new ArrayList(DaoFactory.getPostDao().all());
+        List<Post> posts = new ArrayList((Collection) postDao.findAll());
 
         Collections.reverse(posts);
 
@@ -42,19 +48,19 @@ public class PostsController extends BaseController {
             return "posts/create";
         }
 
-        DaoFactory.getPostDao().insert(posting);
+        postDao.save(posting);
         return "redirect:/posts";
     }
 
     @GetMapping("/{id}")
-    public String showSinglePost(Model model, @PathVariable int id ){
-        model.addAttribute("post", DaoFactory.getPostDao().singlePost(id));
+    public String showSinglePost(Model model, @PathVariable long id ){
+        model.addAttribute("post", postDao.findOne(id));
         return "posts/show";
     }
 
     @GetMapping("/{id}/edit")
-    public String editPost(Model model, @PathVariable int id){
-        model.addAttribute("post", DaoFactory.getPostDao().singlePost(id));
+    public String editPost(Model model, @PathVariable long id){
+        model.addAttribute("post", postDao.findOne(id));
         return "posts/edit";
     }
 
@@ -66,13 +72,13 @@ public class PostsController extends BaseController {
             model.addAttribute("post", updatedPost);
             return "posts/edit";
         }
-        DaoFactory.getPostDao().updatePost(updatedPost);
+        postDao.save(updatedPost);
         return "redirect:/posts";
     }
 
     @PostMapping("/{id}/delete")
     public String deletePost(@ModelAttribute Post postToDelete){
-        DaoFactory.getPostDao().deletePost(postToDelete.getId());
+        postDao.delete(postToDelete);
         return "redirect:/posts";
     }
 

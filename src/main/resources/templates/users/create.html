@@ -18,7 +18,7 @@
         <div class="form-group">
             <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></p>
             <label for="email">Email</label>
-            <input  class="form-control" th:field="*{email}" type="email" id="email" placeholder="Please enter a valid Email"
+            <input  class="form-control" th:field="*{email}" type="text" id="email" placeholder="Please enter a valid Email"
                     autofocus="autofocus" required="required" />
         </div>
 
